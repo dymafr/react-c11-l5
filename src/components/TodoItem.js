@@ -29,6 +29,25 @@ export default function TodoItem({ todo, deleteTodo, updateTodo }) {
     }
   }
 
+  async function handleDeleteTodo() {
+    try {
+      setLoading(true);
+      setError(null);
+      const reponse = await fetch(`https://restapi.fr/api/todo/${todo._id}`, {
+        method: 'DELETE',
+      });
+      if (reponse.ok) {
+        deleteTodo(todo);
+      } else {
+        setError('Oops, une erreur');
+      }
+    } catch (e) {
+      setError('Oops, une erreur');
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <li
       className={
@@ -64,7 +83,7 @@ export default function TodoItem({ todo, deleteTodo, updateTodo }) {
         className="btn btn-reverse-primary"
         onClick={(e) => {
           e.stopPropagation();
-          deleteTodo();
+          handleDeleteTodo();
         }}
       >
         Supprimer

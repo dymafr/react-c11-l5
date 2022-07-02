@@ -36,17 +36,19 @@ function App() {
     };
   }, []);
 
-  function addTodo(todo) {
-    setTodoList([...todoList, todo]);
+  function addTodo(newTodo) {
+    setTodoList([...todoList, newTodo]);
   }
 
-  function deleteTodo(id) {
-    setTodoList(todoList.filter((todo) => todo._id !== id));
+  function deleteTodo(deletedTodo) {
+    setTodoList(todoList.filter((todo) => todo._id !== deletedTodo._id));
   }
 
-  function updateTodo(newTodo) {
+  function updateTodo(updatedTodo) {
     setTodoList(
-      todoList.map((todo) => (todo._id === newTodo._id ? newTodo : todo))
+      todoList.map((todo) =>
+        todo._id === updatedTodo._id ? updatedTodo : todo
+      )
     );
   }
 

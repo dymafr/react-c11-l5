@@ -9,7 +9,12 @@ export default function TodoList({ todoList, deleteTodo, updateTodo }) {
         todo.edit ? (
           <EditTodo key={todo._id} todo={todo} updateTodo={updateTodo} />
         ) : (
-          <TodoItem key={todo._id} todo={todo} updateTodo={updateTodo} />
+          <TodoItem
+            key={todo._id}
+            todo={todo}
+            updateTodo={updateTodo}
+            deleteTodo={deleteTodo}
+          />
         )
       )}
     </ul>
